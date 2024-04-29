@@ -32,39 +32,24 @@ I/O requests to a storage server with a single disk (HDD) attached.
 | Field                            | Description                               |
 | -------------------------------- | ----------------------------------------- |
 | *--- collected fields ---*       |                                           |
-| filename                         | Local filename (hashed)                   |
-| application                      | Application owner of the file (hashed     |
-:                                  : except for spanner, bigtable, or          :
-:                                  : blobstore)                                :
-| file_offset                      | File offset                               |
-| c_time                           | Inode change time in Unix seconds since   |
-:                                  : epoch                                     :
-| io_zone                          | WARM, COLD, or UNKNOWN                    |
-| redundancy_type                  | REPLICATED or ERASURE_CODED               |
-| op_type                          | READ or WRITE                             |
-| service_class                    | Request's priority: LATENCY_SENSITIVE,    |
-:                                  : THROUGHPUT_ORIENTED, or ORTHER            :
-| from_flash_cache                 | Whether the request is from flash cache   |
-| cache_hit                        | Whether the request is served by server's |
-:                                  : buffer cache: hit = 1, miss = 0,          :
-:                                  : write = -1 (n/a)                          :
-| request_io_size_bytes            | Size of the request in bytes              |
-| response_io_size_bytes           | Size of the response in bytes             |
-| disk_io_size_bytes               | Size of the disk operation in bytes (0    |
-:                                  : for cache hit)                            :
-| start_time                       | Request's arrival time at the server in   |
-:                                  : Unix seconds since epoch                  :
-| disk_time                        | Disk read time in seconds (0 for cache    |
-:                                  : hit or write)                             :
+| `filename`                       | Local filename (hashed)                   |
+| `application`                    | Application owner of the file (hashed except for `spanner`, `bigtable`, or `blobstore`)                                                                |
+| `file_offset`                    | File offset                               |
+| `c_time`                         | Inode change time in Unix seconds since epoch |
+| `io_zone`                        | `WARM`, `COLD`, or `UNKNOWN`              |
+| `redundancy_type`                | `REPLICATED` or `ERASURE_CODED`           |
+| `op_type`                        | READ or WRITE                             |
+| `service_class`                  | Request's priority: `LATENCY_SENSITIVE`, `THROUGHPUT_ORIENTED`, or `OTHER`                                                                        |
+| `from_flash_cache`               | Whether the request is from flash cache   |
+| `cache_hit`                      | Whether the request is served by server's buffer cache: hit = 1, miss = 0, write = -1 (n/a)                                                            |
+| `request_io_size_bytes`          | Size of the request in bytes              |
+| `response_io_size_bytes`         | Size of the response in bytes             |
+| `disk_io_size_bytes`             | Size of the disk operation in bytes (0 for cache hit and writes)
+| `start_time`                     | Request's arrival time at the server in Unix seconds since epoch                                                                          |
+| `disk_time`                      | Disk read time in seconds (0 for cache hit or write)                                                                         |
 | *--- synthesized fields ---*     |                                           |
-| simulated_disk_start_time        | Start time of disk read in Unix seconds   |
-: (disk-level)                     : since epoch (0 for cache hit or write)    :
-| simulated_latency (server-level) | Latency in seconds from arrival time to   |
-:                                  : response time at the server. For cache    :
-:                                  : miss read, the value is adjusted by a     :
-:                                  : simulator. For cache hit or write, the    :
-:                                  : value is from real measurement from the   :
-:                                  : original trace.                           :
+| `simulated_disk_start_time`      | Start time of disk read in Unix seconds (disk-level) since epoch (0 for cache hit or write)                                                            |
+| `simulated_latency`              | Latency (server-level) in seconds from arrival time to response time at the server. For cache miss read, the value is adjusted by a simulator. For cache hit or write, the value is from real measurement from the original trace.                                           |
 
 ### Disclaimers
 
