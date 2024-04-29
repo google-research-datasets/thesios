@@ -69,6 +69,11 @@ You can use `gcloud`, `wget`, `curl` command line utilities to download files,
 or directly download from the webpage.
 
 
+## Contact
+
+For questions or concerns contact Mangpo Phothilimthana (`mangpo AT google DOT com`) or Saurabh Kadekodi (`saukad AT google DOT com`).
+
+
 ## CC-BY License
 
 This work is licensed under the Creative Commons Attribution 4.0 International
